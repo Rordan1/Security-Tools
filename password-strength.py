@@ -1,4 +1,4 @@
-## Length: It should be at least 12 characters long or longer.
+##### Length: It should be at least 12 characters long or longer.
 
 ## Complexity: It should include a combination of uppercase and lowercase letters, numbers, and special characters (e.g., @, #, $, %). T
 
@@ -16,15 +16,22 @@
 
 ## Two-factor authentication (2FA): Whenever possible, enable two-factor authentication. 
 
-list = input("enter a password: ")
+def check_password_strength(password):
 
-not_good = "Your password does not meet the minimum qualifications"
+    bad = "Your password does not meet the minimum qualifications"
 
-good = "This is a strong password"
+    mid = "Your password has a moderate level complexity"
 
-if len(list) <= 12:
-    print(not_good)
+    good = "Your password is a strong password"
 
-elif len(list) > 12:
-    print(good)
+    if len(password) <= 8:
+        return bad
+    elif len(password) >= 9 and len(password) <= 12:
+        return mid
+    else:
+        return good
+
+User1_test = input("enter a password: ")
+result = check_password_strength(User1_test)
+print(result)
 
