@@ -1,4 +1,6 @@
 
+import re
+
 ## Complexity: It should include a combination of uppercase and lowercase letters, numbers, and special characters (e.g., @, #, $, %). T
 
 ##. Unpredictability: Avoid using predictable patterns or common substitutions (e.g., "P@ssw0rd" or "12345678"). 
@@ -19,11 +21,11 @@
 
 def check_password_length(password):
 
-    bad = "Your password does not meet the minimum qualifications"
+    bad = "Your password does not meet the minimum length qualifications"
 
-    mid = "Your password has a moderate level complexity"
+    mid = "Your password has a moderate length"
 
-    good = "Your password is a strong password"
+    good = "Your password is a strong length password"
 
     if len(password) <= 6:
         return bad
@@ -32,9 +34,11 @@ def check_password_length(password):
     else:
         return good
     
+### Valid input that will can not be used for a hacking techniques such as SQLi injection or XSS ###
+    
 def input_validation(password):
 
-    dangerous_characters = ['/', '\', '&', ''']
+    dangerous_characters =  r'[\/ \\ \& \' \!]'
 
     for char in password:
         if char in dangerous_characters:
@@ -46,7 +50,14 @@ def main():
 
     User1_test = input("enter a password: ")
     result = check_password_length(User1_test)
+    result2 = input_validation(User1_test)
     print(result)
+
+    if result2 == True:
+        print("Your password is flagged as potentially malicious code, please remove any of these characters /, \, &, or ' ")
+    elif result2 == False:
+        print("Also, your password has passed the input validation check")
+        
 
 if __name__ == "__main__":
     main()
