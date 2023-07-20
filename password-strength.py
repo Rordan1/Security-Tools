@@ -1,4 +1,3 @@
-##### Length: It should be at least 12 characters long or longer.
 
 ## Complexity: It should include a combination of uppercase and lowercase letters, numbers, and special characters (e.g., @, #, $, %). T
 
@@ -16,7 +15,9 @@
 
 ## Two-factor authentication (2FA): Whenever possible, enable two-factor authentication. 
 
-def check_password_strength(password):
+##### Length: Password should be at least 12 characters long or longer.
+
+def check_password_length(password):
 
     bad = "Your password does not meet the minimum qualifications"
 
@@ -24,14 +25,28 @@ def check_password_strength(password):
 
     good = "Your password is a strong password"
 
-    if len(password) <= 8:
+    if len(password) <= 6:
         return bad
-    elif len(password) >= 9 and len(password) <= 12:
+    elif len(password) >= 7 and len(password) <= 12:
         return mid
     else:
         return good
+    
+def input_validation(password):
 
-User1_test = input("enter a password: ")
-result = check_password_strength(User1_test)
-print(result)
+    dangerous_characters = ['/', '\', '&', ''']
 
+    for char in password:
+        if char in dangerous_characters:
+            return True
+    else:
+        return False
+
+def main():
+
+    User1_test = input("enter a password: ")
+    result = check_password_length(User1_test)
+    print(result)
+
+if __name__ == "__main__":
+    main()
