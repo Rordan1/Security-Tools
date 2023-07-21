@@ -1,31 +1,15 @@
 
 import re
 
-## Complexity: It should include a combination of uppercase and lowercase letters, numbers, and special characters (e.g., @, #, $, %). T
-
-##. Unpredictability: Avoid using predictable patterns or common substitutions (e.g., "P@ssw0rd" or "12345678"). 
-
-##. Unique: It should be unique and not used for multiple accounts.
-
-##. No personal information: Avoid using personal information such as your name, birthdate, or address. 
-
-##. Randomness: Generate passwords randomly rather than using easily guessable words or phrases. 
-
-##. Regularly updated: Change your password periodically, especially for sensitive accounts. 
-
-## Regularly updating your password reduces the risk of long-term compromise.
-
-## Two-factor authentication (2FA): Whenever possible, enable two-factor authentication. 
-
 ##### Length: Password should be at least 12 characters long or longer.
 
 def check_password_length(password):
 
-    bad = "Your password does not meet the minimum length qualifications"
+    bad = "Your password does not meet the minimum length qualifications."
 
-    mid = "Your password has a moderate length"
+    mid = "Your password has a moderate length."
 
-    good = "Your password is a strong length password"
+    good = "Your password is a strong length password."
 
     if len(password) <= 6:
         return bad
@@ -34,17 +18,35 @@ def check_password_length(password):
     else:
         return good
     
-### Valid input that will can not be used for a hacking techniques such as SQLi injection or XSS ###
+### Valid input that will can not be used for a hacking techniques such as SQLi injection, directory traversal, or XSS ###
     
 def input_validation(password):
 
-    dangerous_characters =  r'[\/ \\ \& \' \!]'
+    # r"(\.\.\/ \.\.\.\\ \& \' \= \%'[0-9]' \? \+ )"
+    # sql_injection_indicator
+    # directory_traversal_indicator
+    # xss_indicator
+    # shell_code_execution
 
-    for char in password:
-        if char in dangerous_characters:
+    malicious_strings = ["1=1", "../", "..\\", "<script>", "!#" ]
+
+    for malicious_string in malicious_strings:
+        if malicious_string in password:
             return True
-    else:
-        return False
+        
+    return False
+   
+    
+
+## Complexity: It should include a combination of uppercase and lowercase letters, numbers, and special characters (e.g., @, , $, ). 
+
+# def input_complexity(password):
+     
+
+
+
+##. Unpredictability: Avoid using predictable patterns or common substitutions (e.g., "P@ssw0rd" or "12345678"). 
+
 
 def main():
 
@@ -54,9 +56,9 @@ def main():
     print(result)
 
     if result2 == True:
-        print("Your password is flagged as potentially malicious code, please remove any of these characters /, \, &, or ' ")
+        print("Your password is flagged as potentially malicious code, please try a different password")
     elif result2 == False:
-        print("Also, your password has passed the input validation check")
+        print("Also, your password has passed the input validation check.")
         
 
 if __name__ == "__main__":
