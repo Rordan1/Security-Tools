@@ -5,11 +5,11 @@ import re
 
 def check_password_length(password):
 
-    bad = "Your password does not meet the minimum length qualifications. Please try again."
+    bad = "\nYour password does not meet the minimum length qualifications. Please try again."
 
-    mid = "Your password is a moderate length."
+    mid = "\nYour password is a moderate length."
 
-    good = "Your password is a strong length."
+    good = "\nYour password is a strong length."
 
     if len(password) <= 6:
         print(bad)
@@ -26,9 +26,9 @@ def check_password_length(password):
     
 def input_validation(password):
 
-    # sql_injection_indicator
-    # directory_traversal_indicator
-    # xss_indicator
+    # sql_injection
+    # directory_traversal
+    # xss
     # shell_code_execution
     # encoding
 
@@ -52,87 +52,61 @@ def input_complexity(password):
             return True
    return False
 
-## Make sure that there are not multiple repetitive numbers.
 
-def repeating_numbers(password): 
-    repeating_digits = 0 
-    consecutive_digits = 0 
-    
+## Make sure that there are not multiple repetitive numbers consecutively.
+
+def has_repeating_characters(password): 
+    repeating_chars = 0 
+
+    for i in range(len(password) - 2): 
+        if password[i] == password[i + 1] == password[i + 2]: 
+            repeating_chars += 1 
+        else: repeating_chars = 0 
+        
+        if repeating_chars >= 3: 
+            return True 
+            
     for char in password: 
         if char.isdigit(): 
-            repeating_digits += 1 
-            consecutive_digits = 0 
+            repeating_chars += 1 
             
-            if repeating_digits >= 3 or repeating_digits >= 3:
-                return True
-            
-        else: 
-            repeating_digits = 0
-            consecutive_digits = 0
-            
+        else: repeating_chars = 0 
+        
+        if repeating_chars >= 3: 
+            return True 
+    
     return False
-
-## Make sure that there are not multiple repetitive letters
-
-def repeating_characters(password):
-    repeating_chars = 0
-    consecutive_chars = 0
-
-    for i in range(len(password) - 2):
-        if password[i] == password[i + 1] == password[i + 2]:
-            repeating_chars += 1
-            consecutive_chars += 1
-
-            if repeating_chars >= 3 or consecutive_chars >= 3:
-                return True
-        else:
-            repeating_chars = 0
-            consecutive_chars += 1
-
-    return False
-
-
-## Merge all checks and give an output message
 
 def main():
 
     User1_test = input("enter a password: ")
     result = check_password_length(User1_test)
     
-    print(result)
+    print(result + "\n")
 
     result3 = input_complexity(User1_test)
     result2 = input_validation(User1_test)
-    results4 = repeating_numbers(User1_test)
-    results5 = repeating_characters(User1_test)
-   
+    results4 = has_repeating_characters(User1_test)
     
    
     if result3 == True:
-        print("Additionally, your password meets the .")
+        print("Your password has a sufficient number of special characters.\n")
     else:
         print("But unfortunately, your password does not meet the minimum complexity standards. Please add a special character.")
         quit()
  
     if results4 == True:
-        print("Your password has multiple consecutive numbers. Please try a different password.")
+        print("Your password has multiple consecutive numbers or letters. Please try a different password.")
         quit()
     elif results4 == False:
-        print("Your password has passed the consecutive numbers check.")
-
-    if results5:
-        print("Your password has multiple consecutive characters. Please try a different password.")
-        quit()
-    else:
-        print("Your password has passed the consecutive characters check.")
+        print("Additionally, your password has passed the consecutive numbers check.\n")
 
     if result2 == True:
         print("But unfortunately your password was flagged as potentially malicious code. Please try a different password.")
         quit()
     elif result2 == False:
-        print("And lastly, your password has successfully passed the input validation check. \n This means it meets complexity standards")
+        print("And lastly, your password has successfully passed the input validation check. \nThis means it meets complexity standards.")
 
    
-
 if __name__ == "__main__":
     main()
