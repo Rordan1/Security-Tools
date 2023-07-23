@@ -32,11 +32,13 @@ def input_validation(password):
     # shell_code_execution
     # encoding
 
-    malicious_strings = ["1=1", '1=1', "../", "..\\", "<script>", "#!", "SELECT", "FROM", "WHERE", "select", "from", "where", "%0", "%1", "%2", "%3", "%4", "%5", "%6", "%7", "%8", "%9"]
+    malicious_strings = ["1=1", '1=1', "../", "..\\", "<script>", "#!", "SELECT", "FROM", "WHERE", "%0", "%1", "%2", "%3", "%4", "%5", "%6", "%7", "%8", "%9"] 
 
-    for malicious_string in malicious_strings:
-        if malicious_string in password:
-            return True
+    password_lower = password.lower() 
+    
+    for malicious_string in malicious_strings: 
+        if malicious_string.lower() in password_lower: 
+            return True 
         
     return False
     
