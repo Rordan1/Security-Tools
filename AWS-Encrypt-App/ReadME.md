@@ -1,7 +1,7 @@
 
-#Choose file encryption / password hashing / key gen
+# Choose file encryption / password hashing / key gen
 
-##file encryption
+## file encryption
 
 0. tool
 *   openssl
@@ -46,7 +46,7 @@
 
 
 
-##key gen
+## key gen
 
 
 1.   assymetric
