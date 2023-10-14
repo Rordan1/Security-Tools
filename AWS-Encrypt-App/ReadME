@@ -1,15 +1,15 @@
-##Choose file encryption / password hashing / key gen
+## Choose file encryption / password hashing / key gen
 
 file encryption
-#tool
+# tool
 openssl
 gpg
-#Algorithm
+# Algorithm
 md5
 sha256
-#Salt
+# Salt
 hmac
-#Pepper
+# Pepper
 pbkdf2
 
 File Compression
@@ -17,18 +17,18 @@ gzip
 tar
 
 hashing passwords
-#hashing algorithm , , or
+# hashing algorithm , , or
 bcrypt
 Argon2
 Scrypt
 
 key gen
-#assymetric
+# assymetric
 ssh-keygen
-#symetric 
+# symetric 
 openssl
 
-#password or not
+# password or not
 
 asym: -N "your_password_here": Sets the password for the private key
 sym: -k "your_password_here": Sets the password for the key.
