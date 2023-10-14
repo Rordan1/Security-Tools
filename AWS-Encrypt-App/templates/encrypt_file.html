@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSSL File Encryption</title>
+</head>
+<body>
+    <h1>OpenSSL File Encryption</h1>
+    <form action="/encrypt_file" method="post" enctype="multipart/form-data">
+        <label for="file_to_encrypt">Select File to Encrypt:</label>
+        <input type="file" id="file_to_encrypt" name="file_to_encrypt" required>
+        <br>
+        <label for="encryption_key">Encryption Key:</label>
+        <input type="text" id="encryption_key" name="encryption_key" required>
+        <br>
+        <button type="submit">Encrypt File</button>
+    </form>
+</body>
+</html>
